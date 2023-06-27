@@ -32,10 +32,7 @@ RUN chmod +x /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.json
-COPY composer.lock composer.lock
+COPY . .
 
-RUN composer install
-
-# RUN chown -R www-data:www-data ./composer.*
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --optimize-autoloader --no-interaction --no-progress --no-dev;
 
